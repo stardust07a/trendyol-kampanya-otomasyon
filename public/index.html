@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Trendyol Kampanya Otomasyonu | Modern Flow</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1><i class="fas fa-bolt" style="color:#f97316; margin-right: 8px;"></i> Trendyol Kampanya Otomasyonu</h1>
+    <p>Excel'deki ürün linklerini otomatik tarar, kampanya linklerinde bulursa çıkarır, eksikleri raporlar. Modern arayüz & hızlı kontrol.</p>
+  </div>
+
+  <div class="dashboard-grid">
+    <!-- SOL PANEL: KONTROLLER -->
+    <div class="card-modern">
+      <div class="section-title">
+        <i class="fas fa-sliders-h"></i> 
+        <span>Otomasyon Ayarları</span>
+      </div>
+      <form id="startForm">
+        <label><i class="fas fa-file-excel"></i> Excel dosyası (.xlsx, .xls)</label>
+        <input type="file" id="excelFile" name="excel" accept=".xlsx,.xls" required />
+
+        <!-- Kampanya linkleri dinamik -->
+        <div style="margin-top: 1.4rem;">
+          <label><i class="fas fa-link"></i> Kampanya Linkleri</label>
+          <div id="campaign-links-container">
+            <div class="dynamic-row">
+              <input type="text" class="campaign-link-input" placeholder="https://www.trendyol.com/kampanya/..." />
+              <button type="button" class="remove-row-btn"><i class="fas fa-trash-alt"></i> Sil</button>
+            </div>
+          </div>
+          <button type="button" id="add-campaign-link-btn" class="add-btn"><i class="fas fa-plus-circle"></i> Kampanya Linki Ekle</button>
+        </div>
+
+        <!-- Mağaza / Marka adları -->
+        <div style="margin-top: 1.8rem;">
+          <label><i class="fas fa-store"></i> Mağaza / Marka Adları</label>
+          <div id="brand-prefixes-container">
+            <div class="dynamic-row">
+              <input type="text" class="brand-prefix-input" placeholder="Örn: The Champ Clothing, Nike" />
+              <button type="button" class="remove-row-btn"><i class="fas fa-trash-alt"></i> Sil</button>
+            </div>
+          </div>
+          <button type="button" id="add-brand-prefix-btn" class="add-btn"><i class="fas fa-plus-circle"></i> Marka Ekle</button>
+        </div>
+
+        <div class="row-duo">
+          <div>
+            <label><i class="fas fa-hourglass-half"></i> Ürün bekleme (ms)</label>
+            <input type="number" name="productWaitMs" value="1200" min="0" step="100" />
+          </div>
+          <div>
+            <label><i class="fas fa-clock"></i> Kampanya bekleme (ms)</label>
+            <input type="number" name="campaignWaitMs" value="1000" min="0" step="100" />
+          </div>
+        </div>
+
+        <div class="checkline">
+          <input type="checkbox" name="headless" value="true" id="headlessCheckbox" />
+          <label for="headlessCheckbox" style="margin:0; text-transform: none;">🌙 Tarayıcı görünmesin (headless)</label>
+        </div>
+
+        <div class="action-group">
+          <button type="submit" id="startBtn" class="btn-primary"><i class="fas fa-play"></i> Başlat</button>
+          <button type="button" id="stopBtn" class="btn-secondary"><i class="fas fa-stop"></i> Durdur</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- SAĞ PANEL: DURUM & SONUÇLAR -->
+    <div class="card-modern state-card">
+      <div class="section-title">
+        <i class="fas fa-chart-line"></i>
+        <span>İşlem Durumu & Rapor</span>
+      </div>
+      <div id="statusBox" class="state-box">
+        <i class="fas fa-circle" style="font-size: 0.7rem; color: #f97316;"></i>
+        <span>Hazır — bekleniyor</span>
+      </div>
+      <h3 style="font-size: 1rem; margin: 1rem 0 0.5rem;"><i class="fas fa-list-ul"></i> Sonuçlar (ürün bazlı)</h3>
+      <div id="resultsBox" class="results-list">
+        <div class="result-tile" style="opacity:0.7; text-align:center;">Henüz işlem yapılmadı</div>
+      </div>
+      <div id="summaryBox" class="result-tile" style="margin-top: 1rem;">
+        Özet henüz oluşmadı.
+      </div>
+    </div>
+  </div>
+
+  <!-- CANLI LOG -->
+  <div class="card-modern log-area" style="padding:0;">
+    <div class="log-header">
+      <i class="fas fa-terminal" style="color:#f97316;"></i> Canlı Log & Sistem Çıktısı
+    </div>
+    <pre id="logsBox" class="log-pre">📌 Sistem hazır. Kampanya linkleri ve marka filtreleri ekleyip Excel dosyası seçerek başlatabilirsiniz.</pre>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

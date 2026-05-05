@@ -1,0 +1,23 @@
+node_modules/
+
+# Runtime data
+uploads/
+logs/
+user-data/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and build artifacts
+*.log
+dist/
+build/
+coverage/
